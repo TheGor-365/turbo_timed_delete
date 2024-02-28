@@ -1,0 +1,13 @@
+<%= turbo_stream_from 'posts' %>
+
+<h1 class="mb-5">Posts</h1>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    <%= render post unless post.deleted %>
+    <p><%= link_to "Show this post", post, class: "btn btn-sm btn-outline-dark mt-3" %></p>
+  <% end %>
+</div>
+
+
+<%= link_to "New post", new_post_path, class: "btn btn-sm btn-outline-dark mt-3" %>
