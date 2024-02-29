@@ -14,9 +14,11 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+     # @post.expires_at = Time.current + @post.expires_in.to_i.seconds
 
     respond_to do |format|
       if @post.save
+        # MarkAsDeletedJob.set(wait_until: @post.expires_at).perform_later(@post.id)
         format.html { redirect_to post_url(@post)}
       else
         format.html { render :new }
@@ -49,6 +51,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :expires_in)
   end
 end

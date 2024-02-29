@@ -6,6 +6,7 @@
     <div class="form-inputs">
       <%= f.input :title %>
       <%= f.input :body %>
+      <%= f.input :expires_at, collection: [['5 seconds', 5], ['30 seconds', 30], ['1 minute', 60], ['2 minutes', 120]], prompt: 'Select duration' %>
     </div>
 
     <div class="form-actions">
